@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Access;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AccessController extends Controller
 {
@@ -22,9 +23,17 @@ class AccessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function increment($name)
+    public function increment(Request $request)
     {
-        $access = \App\Access::where('name','=',$name)->first();
+        Log::info('????');
+        $name = $request->input('name');
+        $access = \App\Access::where('name','=', $name)->first();
+        if(empty($access)){
+            Log::info('empty');
+        }
+        else{
+            Log::info('exist');
+        }
         return $access;
     }
 
