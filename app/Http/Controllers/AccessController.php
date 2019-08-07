@@ -25,14 +25,17 @@ class AccessController extends Controller
      */
     public function increment(Request $request)
     {
-        Log::info('????');
         $name = $request->input('name');
-        $access = \App\Access::where('name','=', $name)->first();
+        $access = \App\Access::where('name', $name)->where('date',date('Y-m-d'))->first();
         if(empty($access)){
-            Log::info('empty');
+            \App\Access::create([
+                'name' => $name,
+                'date' => date('Y-m-d'),
+            ]);
         }
         else{
-            Log::info('exist');
+            $access->count += 1;
+            $access->save();
         }
         return $access;
     }

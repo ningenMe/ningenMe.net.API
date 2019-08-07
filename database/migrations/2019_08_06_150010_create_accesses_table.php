@@ -14,9 +14,12 @@ class CreateAccessesTable extends Migration
     public function up()
     {
         Schema::create('accesses', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name', 128)->default('text');
             $table->date('date');
-            $table->primary(['name','date']);
+            $table->bigInteger('count')->nullable()->default(0);
+            $table->timestamps();
+            $table->unique(['name','date']);
         });
     }
 
