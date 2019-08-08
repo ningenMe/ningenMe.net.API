@@ -15,5 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/access','AccessController@increment');
+Route::post('/access','AccessController@increment');
 
