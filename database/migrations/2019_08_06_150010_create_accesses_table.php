@@ -17,7 +17,7 @@ class CreateAccessesTable extends Migration
             $table->increments('id');
             $table->string('name', 128)->default('text');
             $table->date('date');
-            $table->bigInteger('count')->nullable()->default(0);
+            $table->bigInteger('count')->nullable()->default(1);
             $table->timestamps();
             $table->unique(['name','date']);
         });

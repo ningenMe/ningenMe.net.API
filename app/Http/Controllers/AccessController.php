@@ -26,6 +26,9 @@ class AccessController extends Controller
     public function increment(Request $request)
     {
         $name = $request->input('name');
+        if(is_null($name)) {
+            return 'null post';
+        }
         $access = \App\Access::where('name', $name)->where('date',date('Y-m-d'))->first();
         if(empty($access)){
             \App\Access::create([
